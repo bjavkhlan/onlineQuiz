@@ -1,0 +1,65 @@
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.DB_URI);
+
+
+const questionSchema = new mongoose.Schema({
+    question: String,
+    choices: [String],
+    answer: String,
+    type: String
+});
+
+const subjectSchema = new mongoose.Schema({
+    subjectName: String,
+    levels: [{
+        levelName: String, 
+        questions: [questionSchema]
+    }]
+});
+
+const userSchema = new mongoose.Schema({
+    username: String,
+    password: String,
+    levels: [{
+        levelId: String,
+        gradeForLevel: {
+            correct: Number,
+            total: Number
+        }
+    }]
+})
+
+const Subject = mongoose.model('Subject', subjectSchema);
+mongoose.model('User', userSchema);
+
+// const gre = new Subject({
+//     subjectName: "GRE",
+//     levels: [{
+//         levelName: "Level 1", 
+//         questions: [{
+//             question: "Test Question 1",
+//             choices: ["ans1", "ans2", "ans3"],
+//             answer: "ans2",
+//             type: "multi"
+//         }]
+//     }]
+// });
+// gre.save( (err) => { 
+//     console.log(err);
+// });
+
+/*
+{
+    subjectName: "GRE",
+    levels: [{
+        levelName: "Level 1", 
+        questions: [{
+            question: "Test Question 1",
+            choices: ["ans1", "ans2", "ans3"],
+            answer: "ans2",
+            type: "multi"
+        }]
+    }]
+}
+*/
