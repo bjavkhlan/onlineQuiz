@@ -1,10 +1,17 @@
+
+
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+  <h1>Online Quizez</h1>
+  <a [routerLink]="['/']">Home</a> | 
+  <a [routerLink]="['subjects']">Subjects</a>
+  <router-outlet></router-outlet>
+  `,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app-client';
+  title = 'Online Quizez';
 }
