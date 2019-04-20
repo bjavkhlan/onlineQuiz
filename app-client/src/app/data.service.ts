@@ -10,5 +10,13 @@ export class DataService {
   }
   get_subjects(){
     return this.http.get(this.baseUrl + '/levels/subjects');
-}  
+  }   
+  login(email:String, password:String) {
+    this.http.post(this.baseUrl + '/users/login', {email:email, password:password})
+    .subscribe( data => {
+      localStorage.setItem('token', data['token']);
+    }, err => {
+      console.log(err);
+    })
+  }
 }
