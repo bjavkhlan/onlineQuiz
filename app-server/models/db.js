@@ -59,6 +59,52 @@ mongoose.model('User', userSchema);
             choices: ["ans1", "ans2", "ans3"],
             answer: "ans2",
             type: "multi"
+        },{
+            question: "Test Question 2",
+            choices: ["ans1", "ans2", "ans3"],
+            answer: "ans2",
+            type: "multi"
+        },{
+            question: "Test Question 3",
+            choices: ["ans1", "ans2", "ans3"],
+            answer: "ans2",
+            type: "multi"
+        }]
+    },{
+        levelName: "Level 2", 
+        questions: [{
+            question: "Test Question 1 level 2",
+            choices: ["ans1", "ans2", "ans3"],
+            answer: "ans2",
+            type: "multi"
+        },{
+            question: "Test Question 2 level 2",
+            choices: ["ans1", "ans2", "ans3"],
+            answer: "ans2",
+            type: "multi"
+        },{
+            question: "Test Question 3 level 2",
+            choices: ["ans1", "ans2", "ans3"],
+            answer: "ans2",
+            type: "multi"
+        }]
+    },{
+        levelName: "Level 3", 
+        questions: [{
+            question: "Test Question 1 level 3",
+            choices: ["ans1", "ans2", "ans3"],
+            answer: "ans2",
+            type: "multi"
+        },{
+            question: "Test Question 2 level 3",
+            choices: ["ans1", "ans2", "ans3"],
+            answer: "ans2",
+            type: "multi"
+        },{
+            question: "Test Question 3 level 3",
+            choices: ["ans1", "ans2", "ans3"],
+            answer: "ans2",
+            type: "multi"
         }]
     }]
 }
