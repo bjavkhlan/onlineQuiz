@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
          { path: 'subjects', loadChildren: './modules/subjects.module#SubjectsModule' }

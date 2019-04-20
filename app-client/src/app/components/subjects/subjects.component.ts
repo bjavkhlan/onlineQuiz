@@ -1,27 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-subjects',
-  template:`
-  <div>
-  Subjects:
-  <ul>
-    <li *ngFor="let subject of listSubjects">
-      <a [routerLink]="[subject.subjectid]">{{subject.name}}</a>
-    </li>
-  </ul>
- </div>
-  `  
+  templateUrl:'subjects.component.html'  
 })
 export class SubjectsComponent implements OnInit {
-  listSubjects:[{subjectid:1,name:'GRE'},
-                {subjectid:2,name:'NodeJs'},
-                {subjectid:3,name:'MongoDB'},
-                {subjectid:4,name:'Angular'}
-               ];
-  constructor() { }
+ 
+  private subjects  = [];     
+  constructor(private dataService: DataService) {
+    this.dataService.get_subjects().subscribe((res:any [])=>{
+      this.subjects = res;
+      console.log(res);
+  }); }
 
-  ngOnInit() {
-  }
+  ngOnInit() {   
+  } 
 
 }
+
+
