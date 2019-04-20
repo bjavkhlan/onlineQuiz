@@ -19,8 +19,9 @@ const subjectSchema = new mongoose.Schema({
 });
 
 const userSchema = new mongoose.Schema({
-    username: String,
-    password: String,
+    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
     levels: [{
         levelId: String,
         gradeForLevel: {
@@ -28,10 +29,10 @@ const userSchema = new mongoose.Schema({
             total: Number
         }
     }]
-})
+});
 
 const Subject = mongoose.model('Subject', subjectSchema);
-mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 // const gre = new Subject({
 //     subjectName: "GRE",
