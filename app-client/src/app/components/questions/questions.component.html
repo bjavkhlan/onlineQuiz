@@ -1,12 +1,17 @@
 <div >   
-  --> Questions:
+ Questions :
     <div>
+      No:{{qnumber}}  {{currentQuestion.question}}
+      </div>
+      <div>
+        Answers:
         <ul>
-         <li *ngFor="let Q of levelQuestions | keyvalue ">
-             {{Q.key}}:{{Q.value}}
-          </li>
-       </ul>
+            <li *ngFor="let q of currentQuestion.choices "> {{q}}</li>
+        </ul>
       </div>
 </div>
 
+<button type="button" (click)="previousQuestions()">Prev</button> 
+<span>     </span>
+ <button type="button" (click)="nextQuestion()">Next</button> 
   

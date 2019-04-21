@@ -11,6 +11,10 @@ export class QuestionsComponent implements OnInit {
   subjectID:string;
   private levelQuestions={} ;    
   private questions=[];
+  currentQuestion:{};
+  qnumber:number;
+  isNext:Boolean=true;
+  isPrev:Boolean=false;
 
   constructor(private route: ActivatedRoute,private dataService: DataService) {
     this.tempDataQuestions();
@@ -20,6 +24,8 @@ export class QuestionsComponent implements OnInit {
     this.route.params.subscribe(p => {
       this.subjectID = p['subjectid'];   
       this.levelID = p['levelid'];   
+      this.currentQuestion=this.questions[0];
+      this.qnumber=1;
     //   this.dataService.get_questions(this.levelID).subscribe((res:{})=>{        
     //     this.subjectlevels = res;
     //     console.log(res);
@@ -46,16 +52,51 @@ export class QuestionsComponent implements OnInit {
                          });                    
 
                          this.questions=level.questions;
+                         console.log(this.questions);
 
   }
 
   nextQuestion(){
-
+    if(this.qnumber===this.questions.length)
+    {
+       this.isNext=false;
+       this.isPrev=true;
+       console.log('isPrev:'+this.isPrev);
+       console.log('isLastQ:'+this.isNext);
+    }
+    
+    else
+    {
+      this.isNext=true;
+      this.isPrev=true;
+    this.qnumber=this.qnumber+1;
+    this.currentQuestion=this.questions[this.qnumber-1];
+    console.log('isPrev:'+this.isPrev);
+      console.log('isLastQ:'+this.isNext);
+    }
   }
   currenQuestion(){
 
   }
   previousQuestions(){
+    if(this.qnumber-1===0)
+    {
+      this.isPrev=false;
+      this.isNext=true;
+      console.log('isPrev:'+this.isPrev);
+      console.log('isLastQ:'+this.isNext);
+    }
+    else
+    {
+      
+      this.isPrev=true;
+    this.qnumber=this.qnumber-1;
+   
+    this.currentQuestion=this.questions[this.qnumber-1];
+    console.log('isPrev:'+this.isPrev);
+      console.log('isLastQ:'+this.isNext);
+    }
+
 
   }
 
