@@ -38,4 +38,10 @@ export class DataService {
 
     
   }
+  get_levels(subjectid){
+    return this.http.get(this.baseUrl + '/levels/'+subjectid);
+  }
+  get_questions(levelid){
+    return this.http.get(this.baseUrl + '/levels/'+levelid);
+  }
 }
