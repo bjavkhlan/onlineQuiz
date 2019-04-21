@@ -1,3 +1,7 @@
+/**
+ * mongo "mongodb+srv://cluster0-beeko.mongodb.net/onlineQuiz" --username onlineQuiz
+ */
+
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.DB_URI);
@@ -13,25 +17,27 @@ const questionSchema = new mongoose.Schema({
 const subjectSchema = new mongoose.Schema({
     subjectName: String,
     levels: [{
-        levelName: String, 
+        levelId: mongoose.Schema.Types.ObjectId, 
         questions: [questionSchema]
     }]
 });
 
 const userSchema = new mongoose.Schema({
-    username: String,
-    password: String,
+    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
     levels: [{
+        _id: mongoose.Schema.Types.ObjectId,
         levelId: String,
         gradeForLevel: {
             correct: Number,
             total: Number
         }
     }]
-})
+});
 
 const Subject = mongoose.model('Subject', subjectSchema);
-mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 // const gre = new Subject({
 //     subjectName: "GRE",
@@ -39,6 +45,52 @@ mongoose.model('User', userSchema);
 //         levelName: "Level 1", 
 //         questions: [{
 //             question: "Test Question 1",
+//             choices: ["ans1", "ans2", "ans3"],
+//             answer: "ans2",
+//             type: "multi"
+//         },{
+//             question: "Test Question 2",
+//             choices: ["ans1", "ans2", "ans3"],
+//             answer: "ans2",
+//             type: "multi"
+//         },{
+//             question: "Test Question 3",
+//             choices: ["ans1", "ans2", "ans3"],
+//             answer: "ans2",
+//             type: "multi"
+//         }]
+//     },{
+//         levelName: "Level 2", 
+//         questions: [{
+//             question: "Test Question 1 level 2",
+//             choices: ["ans1", "ans2", "ans3"],
+//             answer: "ans2",
+//             type: "multi"
+//         },{
+//             question: "Test Question 2 level 2",
+//             choices: ["ans1", "ans2", "ans3"],
+//             answer: "ans2",
+//             type: "multi"
+//         },{
+//             question: "Test Question 3 level 2",
+//             choices: ["ans1", "ans2", "ans3"],
+//             answer: "ans2",
+//             type: "multi"
+//         }]
+//     },{
+//         levelName: "Level 3", 
+//         questions: [{
+//             question: "Test Question 1 level 3",
+//             choices: ["ans1", "ans2", "ans3"],
+//             answer: "ans2",
+//             type: "multi"
+//         },{
+//             question: "Test Question 2 level 3",
+//             choices: ["ans1", "ans2", "ans3"],
+//             answer: "ans2",
+//             type: "multi"
+//         },{
+//             question: "Test Question 3 level 3",
 //             choices: ["ans1", "ans2", "ans3"],
 //             answer: "ans2",
 //             type: "multi"
@@ -50,6 +102,8 @@ mongoose.model('User', userSchema);
 // });
 
 /*
+
+
 {
     subjectName: "GRE",
     levels: [{
