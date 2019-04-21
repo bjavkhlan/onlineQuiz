@@ -4,11 +4,8 @@ GET http://localhost:5000/api/levels HTTP/1.1
 ###
 GET http://localhost:5000/api/levels/subjects HTTP/1.1
 
-###
-GET http://localhost:5000/api/levels/5cbb355aadacc04ab183ea80 HTTP/1.1
-
-
-
+### 
+GET http://localhost:5000/api/levels/5cbca0f49901110e41344e80 HTTP/1.1
 
 
 
@@ -40,3 +37,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZ
 ###
 GET http://localhost:5000/api/ HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lIiwiZW1haWwiOiJqYmF0c2Fpa2hhbkBtdW0uZWR1IiwiaWF0IjoxNTU1NzkwNTk2fQ.kaq3SNXEV6x4qYfqFMgrYa_aEoAnpMp_KNMjYmGV9SE
+
+
+
+
+###
+POST http://localhost:5000/api/submission/5cbca0f49901110e41344e7d HTTP/1.1
+Content-Type: application/json; charset=utf-8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lIiwiZW1haWwiOiJqYmF0c2Fpa2hhbkBtdW0uZWR1IiwiaWF0IjoxNTU1NzkwNTk2fQ.kaq3SNXEV6x4qYfqFMgrYa_aEoAnpMp_KNMjYmGV9SE
+
+{
+    "answers": []
+}
