@@ -3,13 +3,30 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const dbname = require('./keys/key');
 
+const mongoose = require('mongoose');
+const http = require('http');
+const bodyParser = require('body-parser')
 require('dotenv').config();
 require('./models/db');
+
+ mongoose.connect('mongodb+srv://onlineQuiz:onlineQuiz@cluster0-beeko.mongodb.net/onlineQuiz?retryWrites=true', {dbName: 'olineQuiz'});
+//mongoose.connect(`mongodb+srv://${dbname.DB_URI}`)
+mongoose.connection.on('connected', ()=>{
+  console.log('connected to mongo database');
+});
+
+mongoose.connection.on('error', err=>{
+  console.log('Error at mongodb:' + err);;
+  
+})
+
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const levelsRouter = require('./routes/levels');
+
 
 const app = express();
 
@@ -26,6 +43,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/levels', levelsRouter);
+app.use(bodyParser.json());
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
