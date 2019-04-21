@@ -5,6 +5,32 @@
       </div>
       <div>
         Answers:
+        <ul >
+            <li *ngFor="let q of currentQuestion.choices ">
+                <!-- <input type="radio" value={{q}} name="ans" [ngModel]="curranswer" > Male -->
+                <input type="radio" name="ans" (click)="setAnswer(q)"> {{q}}                 
+            </li> 
+            
+        </ul>
+      </div>
+</div>
+
+<button type="button" (click)="previousQuestions()">Prev</button> 
+<span>     </span>
+<button type="button" (click)="nextQuestion()"  >Next</button> 
+<button type="button" (click)="submitanswer()"> submit</button> 
+<!-- <div appIsVisible [display]="true" >test directive</div> -->
+
+
+
+
+<!-- <div >   
+ Questions :
+    <div>
+      No:{{qnumber}}  {{currentQuestion.question}}
+      </div>
+      <div>
+        Answers:
         <ul>
             <li *ngFor="let q of currentQuestion.choices "> {{q}}</li>
         </ul>
@@ -13,5 +39,5 @@
 
 <button type="button" (click)="previousQuestions()">Prev</button> 
 <span>     </span>
- <button type="button" (click)="nextQuestion()">Next</button> 
+ <button type="button" (click)="nextQuestion()">Next</button>  -->
   

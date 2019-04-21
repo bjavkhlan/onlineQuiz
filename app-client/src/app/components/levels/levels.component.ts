@@ -9,7 +9,7 @@ import {DataService} from '../../data.service'
 })
 export class LevelsComponent implements OnInit {
   subjectID:string;
-  private subjectlevels={} ;    
+  private subjectlevels=[] ;    
 
   constructor(private route: ActivatedRoute,private dataService: DataService) {
  }
@@ -22,8 +22,9 @@ export class LevelsComponent implements OnInit {
       this.subjectID = p['subjectid']; 
          console.log('subjectid:'+p['subjectid']);
 
-      this.dataService.get_levels(this.subjectID).subscribe((res:{})=>{        
-        this.subjectlevels = res;    
+      this.dataService.get_levels(this.subjectID).subscribe((res:[])=>{        
+        this.subjectlevels = res;   
+        console.log(this.subjectlevels); 
     });    
 
     });
