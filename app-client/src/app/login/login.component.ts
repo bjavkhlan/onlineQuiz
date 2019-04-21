@@ -1,3 +1,4 @@
+import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
 import { LoginModel} from '../models/login.model';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
   
-  constructor(private formbuilder: FormBuilder) { }
+  constructor(private formbuilder: FormBuilder, private dataService: DataService) { }
 
   ngOnInit() {
     this.loginForm =this.formbuilder.group({
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
   onLoginSubmit() {
     alert(this.user.email + ' ' + this.user.password);
+    this.dataService.login(this.loginForm.get('email').value, this.loginForm.get('password').value );
   }
 
 }
