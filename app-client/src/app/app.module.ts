@@ -28,8 +28,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule,
-   
+    HttpClientModule,   
     ReactiveFormsModule
   ],
   providers: [],
