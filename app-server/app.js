@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const mongoose = require('mongoose');
+
 
 require('dotenv').config();
 require('./models/db');
@@ -17,6 +19,15 @@ const authMiddleware = require('./middlewares/auth');
 
 const app = express();
 
+// connect to mongoose
+
+mongoose.connection.on('connected', () => {
+    console.log('connected to mongo database');
+});
+
+mongoose.connection.on('error', err => {
+    console.log('Error at mongoDB: ' + err);
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
