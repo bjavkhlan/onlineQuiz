@@ -13,7 +13,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { IsVisibleDirective } from './directive/is-visible.directive';
 
 
 @NgModule({
@@ -22,8 +21,7 @@ import { IsVisibleDirective } from './directive/is-visible.directive';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    NavBarComponent,
-    IsVisibleDirective
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

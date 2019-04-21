@@ -1,3 +1,6 @@
+
+
+<div appIsvisible [display]="false" > test dir </div>
 <div >   
  Questions :
     <div>
@@ -15,11 +18,11 @@
       </div>
 </div>
 
-<button type="button" (click)="previousQuestions()">Prev</button> 
+<button type="button" (click)="previousQuestions()" *ngIf="isPrev" >Prev</button> 
 <span>     </span>
-<button type="button" (click)="nextQuestion()"  >Next</button> 
-<button type="button" (click)="submitanswer()"> submit</button> 
-<!-- <div appIsVisible [display]="true" >test directive</div> -->
+<button type="button" (click)="nextQuestion()" *ngIf="isNext">Next</button>
+<button type="button" (click)="submitanswer()" *ngIf="!isNext"> submit</button> 
+
 
 
 

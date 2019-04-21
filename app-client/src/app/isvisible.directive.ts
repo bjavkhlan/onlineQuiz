@@ -1,14 +1,15 @@
 import {Directive, ElementRef, HostBinding, Input, Renderer2, HostListener} from '@angular/core';
 
 @Directive({
-  selector: '[appIsVisible]'
+  selector: '[appIsvisible]'
 })
-export class IsVisibleDirective {
+export class IsvisibleDirective {
 
-  @Input() display=true;
+  @Input() 
+  display=true;
   @HostBinding('style.display') myDisplay;
   
-  constructor(private element: ElementRef, private render2: Renderer2) {
+  constructor() {
 
   }
 
@@ -18,4 +19,3 @@ export class IsVisibleDirective {
   }
 
 }
-
