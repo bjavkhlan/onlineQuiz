@@ -30,6 +30,7 @@ export class DataService {
     .subscribe( data=> {
       console.log(data);
       localStorage.setItem('token', data['token']);
+      this.router.navigate(['/login']);
     },err=> {
       console.log(err);
     })
