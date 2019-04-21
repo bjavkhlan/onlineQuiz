@@ -7,6 +7,10 @@ GET http://localhost:5000/api/levels/subjects HTTP/1.1
 ### 
 GET http://localhost:5000/api/levels/5cbca0f49901110e41344e80 HTTP/1.1
 
+5cbca0f49901110e41344e7e
+### 
+GET http://localhost:5000/api/levels/questions/5cbca0f49901110e41344e7e HTTP/1.1
+
 
 
 ### Signup

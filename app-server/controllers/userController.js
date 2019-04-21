@@ -25,7 +25,7 @@ module.exports.signup = async function(req, res, next) {
             });
             user.save(err => {
                 if (err) next(err);
-                res.json({msg: "success"});
+                else res.json({msg: "success"});
                 // jwt.sign({
                 //     username: req.body.username,
                 //     email: req.body.email
