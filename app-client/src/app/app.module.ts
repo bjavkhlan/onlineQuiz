@@ -29,10 +29,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule.forRoot([
-         { path: 'subjects', loadChildren: './modules/subjects.module#SubjectsModule' }
-    ])
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

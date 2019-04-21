@@ -1,0 +1,62 @@
+import { Component, OnInit } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
+import {DataService} from '../../data.service'
+
+@Component({
+  selector: 'app-questions',
+  templateUrl:'questions.component.html'   
+})
+export class QuestionsComponent implements OnInit {
+  levelID:string;
+  subjectID:string;
+  private levelQuestions={} ;    
+  private questions=[];
+
+  constructor(private route: ActivatedRoute,private dataService: DataService) {
+    this.tempDataQuestions();
+ }
+
+  ngOnInit() {
+    this.route.params.subscribe(p => {
+      this.subjectID = p['subjectid'];   
+      this.levelID = p['levelid'];   
+    //   this.dataService.get_questions(this.levelID).subscribe((res:{})=>{        
+    //     this.subjectlevels = res;
+    //     console.log(res);
+    // });    
+
+    });
+  }
+
+  tempDataQuestions(){
+          let level={
+                  subjectid:'5cbb8b7630608654ee905ccd',
+                  levelName: "Level 1",
+                  _id: "5cbb8b7630608654ee905cd6",
+                  questions:[{choices:["ans1", "ans2", "ans3"],_id: "5cbb8b7630608654ee905cd9", question: "Test Question 1", answer: "ans1", type: "multi"},
+                             {choices:["ans2", "ans1", "ans3"],_id: "5cbb8b7630608654ee905cd8", question: "Test Question 2", answer: "ans2", type: "multi"},
+                             {choices:["ans3", "ans2", "ans1"],_id: "5cbb8b7630608654ee905cd7", question: "Test Question 3", answer: "ans3", type: "multi"}],
+                   };                      
+        // add property 'useranswer'
+                         let count=0;
+                         level.questions.forEach(q =>{
+                           q['useranswer']='';
+                           q['count']=count++;
+                           return q;
+                         });                    
+
+                         this.questions=level.questions;
+
+  }
+
+  nextQuestion(){
+
+  }
+  currenQuestion(){
+
+  }
+  previousQuestions(){
+
+  }
+
+}

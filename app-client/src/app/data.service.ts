@@ -11,4 +11,11 @@ export class DataService {
   get_subjects(){
     return this.http.get(this.baseUrl + '/levels/subjects');
 }  
+  get_levels(subjectID:string){
+  return this.http.get(this.baseUrl + '/levels/'+subjectID);
+  }  
+  get_questions(levelID:string){
+    return this.http.get(this.baseUrl + '/levels/'+levelID);
+    } 
+  
 }
