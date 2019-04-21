@@ -12,12 +12,13 @@ module.exports.evaluateSubmition = async (req, res, next) => {
     const total = questions.length;
 
     // req.body.answer? 
-    if (total != req.body.answer.length) {
+    const answers = req.body;
+    if (answers && total != answers.length) {
         next({msg: "data doesn't match"});
         return;
     }
     for (let i = 0; i < total; i++) {
-        if (questions[i].answer.equals(req.body.answer[i].answer)) correct++;
+        if (questions[i].answer === answers[i].answer) correct++;
     }
 
     const user = await Users.findOne({email: req.user.email});

@@ -42,7 +42,7 @@ export class QuestionsComponent implements OnInit {
 
 
         this.questions = dataArr;
-
+        for (let i = 0; i < this.questions.length; i++) this.answers.push({});                 
         this.currentQuestion=this.questions[0];
         this.qnumber=1;
 
