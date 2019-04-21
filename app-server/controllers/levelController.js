@@ -31,7 +31,7 @@ module.exports.getQuestionsByLevelId = async function(req, res) {
     }
     const questions = subjectLevel.levels[0].questions;
     for (let question of questions) {
-        question.answer = undefined;
+       // question.answer = undefined;
     }
     res.json(questions);
 }
