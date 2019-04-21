@@ -8,24 +8,23 @@ const Users = mongoose.model('User');
 
 module.exports.getUserById = async function(req, res) {
     const user = await Users.find();
-    res.json(subjects);
+    res.json(user);
 }
 
-module.exports.signup = async function(req, res) {
+module.exports.signup = async function(req, res, next) {
     const data = await Users.find({username: req.body.username});
     if (!data || data.length > 0) {
-        res.json({msg: "username already exists"});
-        return;
+        next({msg: "username already exists"});
     } else {
         bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-            if (err) throw err;
+            if (err) next(err);
             const user = new Users({
                 username: req.body.username,
                 email: req.body.email,
                 password: hash
             });
             user.save(err => {
-                if (err) throw err;
+                if (err) next(err);
                 jwt.sign({
                     username: req.body.username,
                     email: req.body.email
@@ -36,10 +35,10 @@ module.exports.signup = async function(req, res) {
     }
 }
 
-module.exports.login = async function(req, res) {
+module.exports.login = async function(req, res, next) {
     const user = await Users.findOne({email: req.body.email});
     bcrypt.compare(req.body.password, user.password, (err, result) => {
-        if (err) throw err;
+        if (err) next(err);
         if (result === true) {
             jwt.sign({
                 username: user.username,
@@ -48,7 +47,7 @@ module.exports.login = async function(req, res) {
                 res.json({ token: token });
             })
         } else {
-            res.json({ msg: "email or password doesn't match"});
+            next({ msg: "email or password doesn't match"});
         }
     })
 }
