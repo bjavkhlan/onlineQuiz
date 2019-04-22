@@ -1,5 +1,5 @@
 
-
+<div *ngIf="!showAnswer">
 <div appIsvisible [display]="false" > test dir </div>
 <div >   
  Questions :
@@ -21,4 +21,8 @@
 <span>     </span>
 <button type="button" (click)="nextQuestion()" *ngIf="isNext">Next</button>
 <button type="button" (click)="submitanswer()" *ngIf="!isNext"> submit</button> 
-  
+
+</div>
+  <div *ngIf="showAnswer">
+    Result:
+  </div>

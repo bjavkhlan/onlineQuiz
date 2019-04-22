@@ -15,7 +15,7 @@ export class DataService {
   login(email:String, password:String) {
     this.http.post(this.baseUrl + '/users/login', {email:email, password:password})
     .subscribe( data => {
-      console.log(data);
+     
       localStorage.setItem('token', data['token']);
 
       this.router.navigate(['/subjects']);
@@ -27,8 +27,7 @@ export class DataService {
   }
   register(name: String, email:String, password: String){
     this.http.post(this.baseUrl + '/users/signup', {name: name, email: email, password: password })
-    .subscribe( data=> {
-      console.log(data);
+    .subscribe( data=> {      
       localStorage.setItem('token', data['token']);
     },err=> {
       console.log(err);
@@ -44,9 +43,11 @@ export class DataService {
     return this.http.get(this.baseUrl + '/levels/questions/'+levelid);
   }
   submit_answers(levelid,answers){   
+
+    console.log('start submit');
     this.http.post(this.baseUrl + '/submission/'+levelid,answers )
     .subscribe( data=> {
-      console.log(data);
+         console.log(data);
       
     },err=> {
       console.log(err);
