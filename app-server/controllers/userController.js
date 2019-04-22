@@ -13,7 +13,7 @@ module.exports.getUserById = async function(req, res) {
 
 module.exports.signup = async function(req, res, next) {
     const data = await Users.find({username: req.body.username});
-    if (!data || data.length > 0) {
+    if (data.length > 0) {
         next({msg: "username already exists"});
     } else {
         bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
@@ -21,7 +21,8 @@ module.exports.signup = async function(req, res, next) {
             const user = new Users({
                 username: req.body.username,
                 email: req.body.email,
-                password: hash
+                password: hash,
+                isAdmin: false
             });
             user.save(err => {
                 if (err) next(err);
