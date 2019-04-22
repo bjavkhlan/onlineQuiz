@@ -95,7 +95,7 @@ export class QuestionsComponent implements OnInit {
   }
 
   setAnswer(answer){
-    this.answers[this.qnumber] = {
+    this.answers[this.qnumber-1] = {
       answer: answer,
       questionId: this.currentQuestion['_id']
     }

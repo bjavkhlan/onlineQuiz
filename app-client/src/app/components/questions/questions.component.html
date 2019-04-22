@@ -10,7 +10,7 @@
         Answers:
         <ul >
             <li *ngFor="let q of currentQuestion.choices ">
-                <input type="radio" name="ans" (click)="setAnswer(q)"> {{q}}                 
+                <input type="radio" name="ans" (click)="setAnswer(q)" [checked]="answers[qnumber-1].answer == q"> {{q}}                 
             </li> 
             
         </ul>
@@ -21,3 +21,4 @@
 <span>     </span>
 <button type="button" (click)="nextQuestion()" *ngIf="isNext">Next</button>
 <button type="button" (click)="submitanswer()" *ngIf="!isNext"> submit</button> 
+  
