@@ -14,10 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-<<<<<<< HEAD
-=======
 import { tokenInterceptor } from './token.interceptor';
->>>>>>> 08d2c393517c8866ee078f53ff588f981d9b9e2e
 
 
 @NgModule({
@@ -35,8 +32,7 @@ import { tokenInterceptor } from './token.interceptor';
     MaterialModule,
     HttpClientModule,   
     ReactiveFormsModule
-  ],
-  providers: [],
+  ], 
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: tokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
