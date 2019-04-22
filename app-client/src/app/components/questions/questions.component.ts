@@ -18,6 +18,7 @@ export class QuestionsComponent implements OnInit {
   isNext:Boolean=true;
   isPrev:Boolean=false;
   curranswer:string='';
+  showAnswer=false;
 
   constructor(private route: ActivatedRoute,private dataService: DataService) {
      }
@@ -44,7 +45,6 @@ export class QuestionsComponent implements OnInit {
         this.currentQuestion=this.questions[0];
         this.qnumber=1;
 
-        console.log(this.currentQuestion);
     });    
 
     });
@@ -102,7 +102,8 @@ export class QuestionsComponent implements OnInit {
    }
 
    submitanswer(){
-    this.dataService.submit_answers(this.levelID,this.answers);
+   const res= this.dataService.submit_answers(this.levelID,this.answers);
+    this.showAnswer=true;
    }
 
 }

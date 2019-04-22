@@ -12,7 +12,6 @@ export class SubjectsComponent implements OnInit {
   constructor(private dataService: DataService) {
     this.dataService.get_subjects().subscribe((res:any [])=>{
       this.subjects = res;    
-      console.log(this.subjects); 
   });
  }
 

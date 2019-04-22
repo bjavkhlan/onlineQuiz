@@ -20,11 +20,8 @@ export class LevelsComponent implements OnInit {
 
     this.route.params.subscribe(p => {
       this.subjectID = p['subjectid']; 
-         console.log('subjectid:'+p['subjectid']);
-
       this.dataService.get_levels(this.subjectID).subscribe((res:[])=>{        
         this.subjectlevels = res;   
-        console.log(this.subjectlevels); 
     });    
 
     });
