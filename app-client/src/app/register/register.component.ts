@@ -1,3 +1,4 @@
+import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
 import { RegisterModel} from '../models/register.model';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   hide = true;
   
-  constructor(private formbuilder: FormBuilder) { }
+  constructor(private formbuilder: FormBuilder, private dataService: DataService) { }
 
   ngOnInit() {
     this.registerForm =this.formbuilder.group({
@@ -33,6 +34,6 @@ export class RegisterComponent implements OnInit {
     })
   }
   onRegisterSubmit() {
-    alert(this.user.name + ' ' + this.user.email + ' ' + this.user.password);
+    this.dataService.register(this.registerForm.get('name').value, this.registerForm.get('email').value, this.registerForm.get('password').value );
   }
 }

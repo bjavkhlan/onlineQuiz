@@ -26,10 +26,9 @@ export class DataService {
 
   }
   register(name: String, email:String, password: String){
-    this.http.post(this.baseUrl + '/users/signup', {name: name, email: email, password: password })
+    this.http.post(this.baseUrl + '/users/signup', {username: name, email: email, password: password })
     .subscribe( data=> {
       console.log(data);
-      localStorage.setItem('token', data['token']);
       this.router.navigate(['/login']);
     },err=> {
       console.log(err);
