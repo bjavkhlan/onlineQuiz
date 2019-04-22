@@ -41,6 +41,15 @@ export class DataService {
     return this.http.get(this.baseUrl + '/levels/'+subjectid);
   }
   get_questions(levelid){
-    return this.http.get(this.baseUrl + '/levels/'+levelid);
+    return this.http.get(this.baseUrl + '/levels/questions/'+levelid);
+  }
+  submit_answers(levelid,answers){   
+    this.http.post(this.baseUrl + '/submission/'+levelid,answers )
+    .subscribe( data=> {
+      console.log(data);
+      
+    },err=> {
+      console.log(err);
+    })
   }
 }

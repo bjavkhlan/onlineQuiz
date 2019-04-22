@@ -2,7 +2,12 @@
   <mat-toolbar-row>
     <button mat-button routerLink= '/home'>Online Quize</button>
     <span class='spacer'></span>
-    <button mat-button routerLink= '/register'>Register</button>
-    <button mat-button routerLink= '/login'>Login</button>
+    <span *ngIf="loggedIn==false">
+      <button mat-button routerLink= '/register'>Register</button>
+      <button mat-button routerLink= '/login'>Login</button>
+    </span>
+    <span *ngIf="loggedIn==true">
+      <button mat-button (click)="logout()">Logout</button>
+    </span>
   </mat-toolbar-row>
 </mat-toolbar>

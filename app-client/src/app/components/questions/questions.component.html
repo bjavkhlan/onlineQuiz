@@ -1,12 +1,24 @@
+
+
+<div appIsvisible [display]="false" > test dir </div>
 <div >   
-  --> Questions:
+ Questions :
     <div>
-        <ul>
-         <li *ngFor="let Q of levelQuestions | keyvalue ">
-             {{Q.key}}:{{Q.value}}
-          </li>
-       </ul>
+      No:{{qnumber}}  {{currentQuestion.question}}
+      </div>
+      <div>
+        Answers:
+        <ul >
+            <li *ngFor="let q of currentQuestion.choices ">
+                <input type="radio" name="ans" (click)="setAnswer(q)" [checked]="answers[qnumber-1].answer == q"> {{q}}                 
+            </li> 
+            
+        </ul>
       </div>
 </div>
 
+<button type="button" (click)="previousQuestions()" *ngIf="isPrev" >Prev</button> 
+<span>     </span>
+<button type="button" (click)="nextQuestion()" *ngIf="isNext">Next</button>
+<button type="button" (click)="submitanswer()" *ngIf="!isNext"> submit</button> 
   

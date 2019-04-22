@@ -4,8 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const mongoose = require('mongoose');
-
 
 require('dotenv').config();
 require('./models/db');
@@ -13,21 +11,12 @@ require('./models/db');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const levelsRouter = require('./routes/levels');
+const submissionRouter = require('./routes/submission');
 
 const bearerMiddleware = require('./middlewares/bearer');
-const authMiddleware = require('./middlewares/auth');
 
 const app = express();
 
-// connect to mongoose
-
-mongoose.connection.on('connected', () => {
-    console.log('connected to mongo database');
-});
-
-mongoose.connection.on('error', err => {
-    console.log('Error at mongoDB: ' + err);
-});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -43,6 +32,7 @@ app.use(bearerMiddleware);
 app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/levels', levelsRouter);
+app.use('/api/submission/', submissionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

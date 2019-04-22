@@ -14,12 +14,15 @@ const questionSchema = new mongoose.Schema({
     type: String
 });
 
+const levelSchema = new mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId, 
+    levelName: String,
+    questions: [questionSchema]
+});
+
 const subjectSchema = new mongoose.Schema({
     subjectName: String,
-    levels: [{
-        levelId: mongoose.Schema.Types.ObjectId, 
-        questions: [questionSchema]
-    }]
+    levels: [levelSchema]
 });
 
 const userSchema = new mongoose.Schema({
@@ -27,8 +30,7 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     levels: [{
-        _id: mongoose.Schema.Types.ObjectId,
-        levelId: String,
+        levelId: mongoose.Schema.Types.ObjectId,
         gradeForLevel: {
             correct: Number,
             total: Number
@@ -43,6 +45,7 @@ const User = mongoose.model('User', userSchema);
 //     subjectName: "GRE",
 //     levels: [{
 //         levelName: "Level 1", 
+//         _id: new mongoose.mongo.ObjectID(),
 //         questions: [{
 //             question: "Test Question 1",
 //             choices: ["ans1", "ans2", "ans3"],
@@ -60,7 +63,8 @@ const User = mongoose.model('User', userSchema);
 //             type: "multi"
 //         }]
 //     },{
-//         levelName: "Level 2", 
+//         levelName: "Level 2",
+//         _id: new mongoose.mongo.ObjectID(), 
 //         questions: [{
 //             question: "Test Question 1 level 2",
 //             choices: ["ans1", "ans2", "ans3"],
@@ -79,6 +83,7 @@ const User = mongoose.model('User', userSchema);
 //         }]
 //     },{
 //         levelName: "Level 3", 
+//         _id: new mongoose.mongo.ObjectID(),
 //         questions: [{
 //             question: "Test Question 1 level 3",
 //             choices: ["ans1", "ans2", "ans3"],
