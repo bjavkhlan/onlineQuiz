@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { tokenInterceptor } from './token.interceptor';
+import { MatCardModule } from '@angular/material';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { tokenInterceptor } from './token.interceptor';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,   
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
   ], 
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: tokenInterceptor, multi: true}],
   bootstrap: [AppComponent]

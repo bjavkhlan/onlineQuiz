@@ -19,6 +19,7 @@ export class QuestionsComponent implements OnInit {
   isPrev:Boolean=false;
   curranswer:string='';
   showAnswer=false;
+  quizResult={correct:0,total:0};
 
   constructor(private route: ActivatedRoute,private dataService: DataService) {
      }
@@ -102,8 +103,13 @@ export class QuestionsComponent implements OnInit {
    }
 
    submitanswer(){
-   const res= this.dataService.submit_answers(this.levelID,this.answers);
-    this.showAnswer=true;
+   this.dataService.submit_answers(this.levelID,this.answers).subscribe( data=> {
+     this.quizResult=data;
+     this.showAnswer=true;
+      },err=> {
+  console.log(err);
+     })
+      
    }
 
 }
