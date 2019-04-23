@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
     })
   }
   onLoginSubmit() {
-    alert(this.user.email + ' ' + this.user.password);
     this.dataService.login(this.loginForm.get('email').value, this.loginForm.get('password').value );
   }
 

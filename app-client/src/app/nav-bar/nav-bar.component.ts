@@ -8,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class NavBarComponent implements OnInit {
   private loggedIn:boolean;
   constructor() {
-    if(localStorage['token']) this.loggedIn = true;
+    if(localStorage.getItem('token')) this.loggedIn = true;
     else this.loggedIn = false;
   }
   
   logout() {
-    localStorage['token'] = undefined;
+    localStorage.removeItem('token');
     this.loggedIn = false;
   }
   ngOnInit() {

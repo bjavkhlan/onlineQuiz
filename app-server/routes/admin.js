@@ -1,10 +1,18 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
+const authMiddleware = require('../middlewares/auth');
 
 const Subjects = mongoose.model('Subject');
 
+const adminMiddleware = function(req, res, next) {
+  console.log(req.user);
+  console.log(req.user.isAdmin);
+  if (req.user.isAdmin === true) next();
+  else next({msg:"user is not Admin"});
+}
+
 // create new subjects
-router.post('/subject/:subjectName', function(req, res, next) {
+router.post('/subject/:subjectName', authMiddleware, adminMiddleware, function(req, res, next) {
   const newSubject = new Subjects({subjectName: req.params.subjectName});
   newSubject.save(err => {
     if (err) next(err);
@@ -14,7 +22,7 @@ router.post('/subject/:subjectName', function(req, res, next) {
 
 
 // create level for subject
-router.post('/level/:subjectId', async function(req, res, next) {
+router.post('/level/:subjectId', authMiddleware, adminMiddleware, async function(req, res, next) {
   const subject = await Subjects.findById(req.params.subjectId);
   if (subject.levels === undefined) subject.levels = [];
   req.body._id = new mongoose.mongo.ObjectID();
