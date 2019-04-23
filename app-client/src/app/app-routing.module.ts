@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
+import { AdminGuard } from './admin.guard';
 
 const routes: Routes = [{
   path:'' ,component: HomeComponent
@@ -15,7 +16,8 @@ const routes: Routes = [{
 }, {
   path: 'subjects', loadChildren: './modules/subjects.module#SubjectsModule' 
 }, {
-  path: 'admin', loadChildren: './admin/admin.module#AdminModule' 
+  path: 'admin', loadChildren: './admin/admin.module#AdminModule',
+  canActivate:[AdminGuard]
 }
 ];
 
