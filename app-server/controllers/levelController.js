@@ -7,15 +7,19 @@ module.exports.getSubjectNames = async function(req, res) {
     res.json(subjectNames);
 }
 
-module.exports.getLevelsBySubjectId = async function(req, res) {
-    const subject = await Subjects.findById(req.params.subjectId);
-    let levels = [];
-    for (let level of subject.levels)
-        levels.push({
-            _id: level._id,
-            levelName: level.levelName
-        })
-    res.json(levels); 
+module.exports.getLevelsBySubjectId = async function(req, res, next) {
+    try {
+        const subject = await Subjects.findById(req.params.subjectId);
+        let levels = [];
+        for (let level of subject.levels)
+            levels.push({
+                _id: level._id,
+                levelName: level.levelName
+            })
+        res.json(levels); 
+    } catch (err) {
+        next(err);
+    }
 }
 
 module.exports.getQuestionsByLevelId = async function(req, res) {

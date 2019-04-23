@@ -51,8 +51,8 @@ export class DataService {
     return this.http.get(this.baseUrl + '/levels/subjects');
   }   
   get_levels(subjectid){
-    return this.http.get(this.baseUrl + '/levels/'+subjectid);
-  }
+   return this.http.get(this.baseUrl + '/levels/'+subjectid);
+     }
   get_questions(levelid){
     return this.http.get(this.baseUrl + '/levels/questions/'+levelid);
   }

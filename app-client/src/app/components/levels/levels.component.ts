@@ -4,6 +4,7 @@ import {DataService} from '../../data.service'
 import { NgRedux, select } from '@angular-redux/store';
 import { IAppState } from '../../store';
 import { SET_LEVEL_NAME } from '../../actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-levels',
@@ -14,6 +15,7 @@ import { SET_LEVEL_NAME } from '../../actions';
 export class LevelsComponent implements OnInit {
   @select() subjectName;
   @select() levelName;
+  @select() levels: Observable<any>;
   subjectID:string;
   private subjectlevels=[] ;    
 
@@ -23,10 +25,7 @@ export class LevelsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(p => {
       this.subjectID = p['subjectid']; 
-      this.dataService.get_levels(this.subjectID).subscribe((res:[])=>{        
-        this.subjectlevels = res;        
-    });    
-
+      this.levels.subscribe(data => this.subjectlevels = data);      
     });
   }
   setLevelName(levname){

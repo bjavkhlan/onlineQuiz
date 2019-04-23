@@ -1,10 +1,11 @@
-import { SET_SUBJECT_NAME, SET_LEVEL_NAME, USER_LOGIN, USER_LOGOUT } from './actions';
+import { SET_LEVELS, SET_SUBJECT_NAME, SET_LEVEL_NAME, USER_LOGIN, USER_LOGOUT } from './actions';
 export interface IAppState {
     lastUpdate: Date;
     subjectName:string;
     levelName:string;
     userName: String;
     isAdmin: boolean;
+    levels:any[]
 }
     
 export const INITIAL_STATE: IAppState = {
@@ -12,7 +13,8 @@ export const INITIAL_STATE: IAppState = {
     subjectName:'',
     levelName:'',
     isAdmin: false,
-    userName: null
+    userName: null,
+    levels:[]
 }
 
 export function rootReducer(state: IAppState, action): IAppState {
@@ -39,6 +41,11 @@ export function rootReducer(state: IAppState, action): IAppState {
                 lastUpdate: new Date(),
                 isAdmin: false,
                 userName: null
+            })
+
+            case SET_LEVELS:
+            return Object.assign({}, state, {
+                levels:action.levels
             })
     }    
     return state;
