@@ -1,0 +1,38 @@
+<form [formGroup]="levelForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput placeholder="Level Name" formControlName="levelName">
+  </mat-form-field>
+  <div formArrayName="questions">
+    <h3>Questions</h3>
+    <mat-card *ngFor="let question of levelForm.get('questions').controls; let iq = index;">
+      <mat-card-title> Question {{iq+1}} </mat-card-title>
+      <div [formGroupName]="iq">
+        <mat-form-field>
+          <textarea matInput placeholder="Question" formControlName="question"></textarea>
+        </mat-form-field>
+        <br>
+        <div formArrayName="choices">
+          <div *ngFor="let choice of question.get('choices').controls; let ic = index;">
+            <input matInput placeholder="choice" [formControlName]="ic">
+          </div>
+          <button mat-button type="button" (click)="addChoice(question.get('choices'))">addChoice</button>
+        </div>
+
+        <br>
+        <mat-form-field>
+          <mat-label>Correct answer</mat-label>
+          <mat-select formControlName="answer">
+            <mat-option *ngFor="let choice of question.get('choices').value" [value]="choice">
+              {{choice}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card>
+    <button mat-button type="button" (click)="addQuestion()">addQuestion</button>
+  </div>
+  <button mat-button type="submit" [disabled]="!levelForm.valid">Submit</button>
+</form>
+
+<!-- {{ levelForm.value | json }} -->
+

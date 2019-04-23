@@ -14,6 +14,8 @@ const routes: Routes = [{
   path:'login',component: LoginComponent
 }, {
   path: 'subjects', loadChildren: './modules/subjects.module#SubjectsModule' 
+}, {
+  path: 'admin', loadChildren: './admin/admin.module#AdminModule' 
 }
 ];
 

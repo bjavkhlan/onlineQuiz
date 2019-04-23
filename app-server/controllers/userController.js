@@ -27,10 +27,6 @@ module.exports.signup = async function(req, res, next) {
             user.save(err => {
                 if (err) next(err);
                 else res.json({msg: "success"});
-                // jwt.sign({
-                //     username: req.body.username,
-                //     email: req.body.email
-                // }, SECRET, (err, token) => res.json({token: token}));
             })
         })
         
@@ -44,7 +40,8 @@ module.exports.login = async function(req, res, next) {
         if (result === true) {
             jwt.sign({
                 username: user.username,
-                email: user.email
+                email: user.email,
+                isAdmin: user.isAdmin
             }, SECRET, (err, token) => {
                 res.json({ token: token });
             })
