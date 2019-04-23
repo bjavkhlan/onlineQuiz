@@ -3,6 +3,7 @@ import { NgRedux, select } from '@angular-redux/store';
 import { Observable } from 'rxjs';
 import { IAppState } from '../store';
 import { USER_LOGOUT } from '../actions';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -15,7 +16,7 @@ export class NavBarComponent implements OnInit {
   private name: string;
   private admin: boolean;
   private loggedIn:boolean;
-  constructor(private userStore: NgRedux<IAppState>) {
+  constructor(private userStore: NgRedux<IAppState>, private dataService: DataService) {
     if(localStorage.getItem('token')) this.loggedIn = true;
     else this.loggedIn = false;
 
@@ -28,9 +29,8 @@ export class NavBarComponent implements OnInit {
     else this.loggedIn = false;
   }
   logout() {
-    this.userStore.dispatch({ type: USER_LOGOUT });
-    localStorage.removeItem('token');
     this.loggedIn = false;
+    this.dataService.logout();
   }
   ngOnInit() {
   }

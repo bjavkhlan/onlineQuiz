@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from './store';
-import { state } from '@angular/animations';
-import { USER_LOGIN } from './actions';
+import { USER_LOGIN, USER_LOGOUT } from './actions';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -40,6 +39,11 @@ export class DataService {
     },err=> {
       console.log(err);
     });
+  }
+  logout() {
+    this.stateStore.dispatch({ type: USER_LOGOUT });
+    localStorage.removeItem('token');
+    this.router.navigate(['/home']);
   }
 
 
