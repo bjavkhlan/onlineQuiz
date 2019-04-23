@@ -1,31 +1,45 @@
-import { SET_SUBJECT_NAME, SET_LEVEL_NAME } from './actions';
+import { SET_SUBJECT_NAME, SET_LEVEL_NAME, USER_LOGIN, USER_LOGOUT } from './actions';
 export interface IAppState {
     lastUpdate: Date;
     subjectName:string;
     levelName:string;
+    userName: String;
+    isAdmin: boolean;
 }
     
-    export const INITIAL_STATE: IAppState = {
-        lastUpdate: null,
-        subjectName:'',
-        levelName:''
-    }
+export const INITIAL_STATE: IAppState = {
+    lastUpdate: null,
+    subjectName:'',
+    levelName:'',
+    isAdmin: false,
+    userName: null
+}
 
-    export function rootReducer(state: IAppState, action): IAppState {
-        switch (action.type) {
-            case SET_SUBJECT_NAME:   
-                return Object.assign({}, state, {
-                    lastUpdate: new Date(),
-                    subjectName:action.todo                    
-                })
+export function rootReducer(state: IAppState, action): IAppState {
+    switch (action.type) {
+        case SET_SUBJECT_NAME:   
+            return Object.assign({}, state, {
+                lastUpdate: new Date(),
+                subjectName:action.todo                    
+            })
 
-                case SET_LEVEL_NAME:   
-                    return Object.assign({}, state, {
-                        lastUpdate: new Date(),
-                        levelName:action.todo                    
-                    })
-            }    
-            
-
-        return state;
-    }
+        case SET_LEVEL_NAME:   
+            return Object.assign({}, state, {
+                lastUpdate: new Date(),
+                levelName:action.todo                    
+            })
+        case USER_LOGIN: 
+            return Object.assign({}, state, {
+                lastUpdate: new Date(),
+                isAdmin: action.isAdmin,
+                userName: action.userName
+            })
+        case USER_LOGOUT:
+            return Object.assign({}, state, {
+                lastUpdate: new Date(),
+                isAdmin: false,
+                userName: null
+            })
+    }    
+    return state;
+}

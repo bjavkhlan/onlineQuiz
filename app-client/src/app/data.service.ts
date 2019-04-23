@@ -1,25 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from './store';
+import { state } from '@angular/animations';
+import { USER_LOGIN } from './actions';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-    baseUrl:string = "http://localhost:5000/api";
-  constructor(public http: HttpClient, private router: Router) {    
+  baseUrl:string = "http://localhost:5000/api";
+  private jwtHelper: JwtHelperService;
+  constructor(public http: HttpClient, private router: Router, private stateStore: NgRedux<IAppState>) {
+    this.jwtHelper = new JwtHelperService();
   }
+
   get_subjects(){
     return this.http.get(this.baseUrl + '/levels/subjects');
   }   
+  
   login(email:String, password:String) {
     this.http.post(this.baseUrl + '/users/login', {email:email, password:password})
     .subscribe( data => {
-     
       localStorage.setItem('token', data['token']);
-
+      const decodedtoken = this.jwtHelper.decodeToken(data['token']);
+      this.stateStore.dispatch({ type: USER_LOGIN, isAdmin: decodedtoken.isAdmin, userName: decodedtoken.username});
       this.router.navigate(['/subjects']);
-
     }, err => {
       console.log(err);
     })

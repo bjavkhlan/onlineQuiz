@@ -2,12 +2,13 @@
   <mat-toolbar-row>
     <button mat-button routerLink= '/home'>Online Quize</button>
     <button mat-button routerLink= '/subjects'>Subjects</button>
-    <button mat-button routerLink= '/admin'>admin</button>
+    <button *ngIf="admin==true" mat-button routerLink= '/admin'>admin</button>
     <span class='spacer'></span>
     <span *ngIf="loggedIn==false">
       <button mat-button routerLink= '/register'>Register</button>
       <button mat-button routerLink= '/login'>Login</button>
     </span>
+    <span *ngIf="loggedIn==true">{{name}}</span>
     <button *ngIf="loggedIn==true" mat-button (click)="logout()">Logout</button>
   </mat-toolbar-row>
 </mat-toolbar>

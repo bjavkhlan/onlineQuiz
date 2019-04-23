@@ -44,5 +44,5 @@ import { FormsModule } from '@angular/forms';
 export class AppModule {
   constructor (ngRedux: NgRedux<IAppState>) {
     ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  }
 }
- }
