@@ -6,7 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { AdminGuard } from './admin.guard';
 
 const routes: Routes = [{
-  path:'' ,component: HomeComponent
+  path:'*' ,component: HomeComponent
 }, {
   path:'home' ,component: HomeComponent
 }, {
