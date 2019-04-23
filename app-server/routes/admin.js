@@ -5,8 +5,6 @@ const authMiddleware = require('../middlewares/auth');
 const Subjects = mongoose.model('Subject');
 
 const adminMiddleware = function(req, res, next) {
-  console.log(req.user);
-  console.log(req.user.isAdmin);
   if (req.user.isAdmin === true) next();
   else next({msg:"user is not Admin"});
 }
