@@ -10,12 +10,13 @@ import { SubjectsComponent } from '../components/subjects/subjects.component';
 import { UsersComponent } from '../components/users/users.component';
 import { QuestionsComponent } from '../components/questions/questions.component';
 import { IsvisibleDirective } from '../isvisible.directive';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   declarations: [SubjectsComponent,LevelsComponent, UsersComponent,QuestionsComponent,IsvisibleDirective],
   imports: [
     CommonModule,
-    
+    MaterialModule,
     RouterModule.forChild([
       { path: '', component: SubjectsComponent },
       { path: ':subjectid', component: LevelsComponent },

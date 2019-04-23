@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
 import {DataService} from '../../data.service'
+import { select } from '@angular-redux/store';
 
 
 @Component({
@@ -8,6 +9,8 @@ import {DataService} from '../../data.service'
   templateUrl:'questions.component.html'   
 })
 export class QuestionsComponent implements OnInit {
+  @select() subjectName;
+  @select() levelName;
   levelID:string;
   subjectID:string;
   private levelQuestions={} ;    
@@ -104,7 +107,7 @@ export class QuestionsComponent implements OnInit {
 
    submitanswer(){
    this.dataService.submit_answers(this.levelID,this.answers).subscribe( data=> {
-     this.quizResult=data;
+     this.quizResult=data;   
      this.showAnswer=true;
       },err=> {
   console.log(err);

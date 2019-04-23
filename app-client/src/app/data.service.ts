@@ -45,11 +45,5 @@ export class DataService {
   }
   submit_answers(levelid,answers):any{     
     return this.http.post(this.baseUrl + '/submission/'+levelid,answers )  
-  //  return this.http.post(this.baseUrl + '/submission/'+levelid,answers )
-  //   .subscribe( data=> {
-  //       // console.log(data);        
-  //   },err=> {
-  //     console.log(err);
-  //   })
-  }
+   }
 }

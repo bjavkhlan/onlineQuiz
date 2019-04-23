@@ -15,7 +15,9 @@ import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { tokenInterceptor } from './token.interceptor';
 import { MatCardModule } from '@angular/material';
-
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { IAppState, rootReducer, INITIAL_STATE } from './store';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,15 @@ import { MatCardModule } from '@angular/material';
     MaterialModule,
     HttpClientModule,   
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    NgReduxModule ,
+    FormsModule 
   ], 
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: tokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor (ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+}
+ }

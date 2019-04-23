@@ -1,13 +1,12 @@
-<div >
-    <!-- create a radio button-->
-    <div>--> levels:
-        <ul>
-         <li *ngFor="let level of subjectlevels  ">
-            <a [routerLink]="[level._id]">{{level.levelName}}</a>
-         </li>
-       </ul>
-      </div>
-</div>
+<br>
+<p>Subject:{{ (subjectName | async) }} </p> 
+<mat-list>
+    <mat-list-item *ngFor="let level of subjectlevels ">
+    <!-- <mat-icon mat-list-icon>folder</mat-icon> -->
+    <h4 mat-line> <a (click)="setLevelName(level.levelName)" [routerLink]="[level._id]">{{level.levelName}}</a></h4>
+    <mat-divider></mat-divider>
+    </mat-list-item>
+</mat-list>
 
 
 
