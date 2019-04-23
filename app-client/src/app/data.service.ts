@@ -17,22 +17,21 @@ export class DataService {
     this.jwtHelper = new JwtHelperService();
   }
 
-  get_subjects(){
-    return this.http.get(this.baseUrl + '/levels/subjects');
-  }   
-  
+  getUser() {
+    const decodedtoken = this.jwtHelper.decodeToken(localStorage.getItem('token'));
+    this.stateStore.dispatch({ type: USER_LOGIN, isAdmin: decodedtoken.isAdmin, userName: decodedtoken.username});
+  }
   login(email:String, password:String) {
     this.http.post(this.baseUrl + '/users/login', {email:email, password:password})
     .subscribe( data => {
       localStorage.setItem('token', data['token']);
-      const decodedtoken = this.jwtHelper.decodeToken(data['token']);
-      this.stateStore.dispatch({ type: USER_LOGIN, isAdmin: decodedtoken.isAdmin, userName: decodedtoken.username});
+      this.getUser();
       this.router.navigate(['/subjects']);
     }, err => {
       console.log(err);
-    })
-
+    });
   }
+
   register(name: String, email:String, password: String){
     this.http.post(this.baseUrl + '/users/signup', {username: name, email: email, password: password })
     .subscribe( data=> {
@@ -40,11 +39,13 @@ export class DataService {
       this.router.navigate(['/login']);
     },err=> {
       console.log(err);
-    })
-    
-
-    
+    });
   }
+
+
+  get_subjects(){
+    return this.http.get(this.baseUrl + '/levels/subjects');
+  }   
   get_levels(subjectid){
     return this.http.get(this.baseUrl + '/levels/'+subjectid);
   }

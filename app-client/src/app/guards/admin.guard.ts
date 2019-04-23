@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/r
 import { Observable } from 'rxjs';
 import { CanActivate } from '@angular/router/src/utils/preactivation';
 import { NgRedux, select } from '@angular-redux/store';
-import { IAppState } from './store';
+import { IAppState } from '../store';
 
 @Injectable({
   providedIn: 'root'
