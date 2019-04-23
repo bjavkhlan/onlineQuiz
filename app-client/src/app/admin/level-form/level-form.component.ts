@@ -10,10 +10,10 @@ import { AdminService } from '../admin.service';
 export class LevelFormComponent {
   @Input() subjectId:String;
   @Output() levelAdded = new EventEmitter();
-  private levelForm: FormGroup;
-  private questions: FormArray;
+  public levelForm: FormGroup;
+  public questions: FormArray;
   
-  constructor(private formBuilder: FormBuilder, private adminService: AdminService) { 
+  constructor(public formBuilder: FormBuilder, private adminService: AdminService) { 
     this.levelForm = formBuilder.group({
       levelName: ['', [Validators.required]],
       questions: formBuilder.array([ this.createQuestion() ])

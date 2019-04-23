@@ -17,8 +17,8 @@ import { DataService } from '../data.service';
   styles: []
 })
 export class LevelComponent implements OnInit {
-  private levels:any = [];
-  private subjectId:String;
+  public levels:any = [];
+  public subjectId:String;
   constructor(private route: ActivatedRoute, private dataService: DataService ) { 
     route.params.subscribe(
       params => {

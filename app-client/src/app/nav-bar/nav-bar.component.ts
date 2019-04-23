@@ -13,9 +13,9 @@ import { DataService } from '../data.service';
 export class NavBarComponent implements OnInit {
   @select() userName: Observable<String>;
   @select() isAdmin: Observable<boolean>;
-  private name: string;
-  private admin: boolean;
-  private loggedIn:boolean;
+  public name: string;
+  public admin: boolean;
+  public loggedIn:boolean;
   constructor(private userStore: NgRedux<IAppState>, private dataService: DataService) {
     if(localStorage.getItem('token')) this.loggedIn = true;
     else this.loggedIn = false;

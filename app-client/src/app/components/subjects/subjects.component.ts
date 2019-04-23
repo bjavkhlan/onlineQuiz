@@ -12,7 +12,7 @@ import { NgRedux, select } from '@angular-redux/store';
 })
 export class SubjectsComponent implements OnInit {
   @select() subjectName;
-  private subjects  = [];     
+  public subjects  = [];     
   constructor(private dataService: DataService,private ngRedux: NgRedux<IAppState>) {
     this.dataService.get_subjects().subscribe((res:any [])=>{
       this.subjects = res;        

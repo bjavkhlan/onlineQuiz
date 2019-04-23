@@ -17,7 +17,7 @@ export class LevelsComponent implements OnInit {
   @select() levelName;
   @select() levels: Observable<any>;
   subjectID:string;
-  private subjectlevels=[] ;    
+  public subjectlevels=[] ;    
 
   constructor(private route: ActivatedRoute,private dataService: DataService,private ngRedux: NgRedux<IAppState>) {
  }

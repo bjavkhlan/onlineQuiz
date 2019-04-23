@@ -18,8 +18,8 @@ import { DataService } from '../data.service';
   styles: []
 })
 export class SubjectComponent implements OnInit {
-  private subjects:any = [];
-  private showSubjectForm:boolean = false;
+  public subjects:any = [];
+  public showSubjectForm:boolean = false;
   constructor(private dataService: DataService) { 
     this.getSubjects();
   }

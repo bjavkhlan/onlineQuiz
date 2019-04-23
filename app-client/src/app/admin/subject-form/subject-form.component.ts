@@ -9,8 +9,8 @@ import { AdminService } from '../admin.service';
 })
 export class SubjectFormComponent implements OnInit {
   @Output() subjectCreated = new EventEmitter<boolean>();
-  private subjetForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private service: AdminService) { }
+  public subjetForm: FormGroup;
+  constructor(public formBuilder: FormBuilder, private service: AdminService) { }
 
   ngOnInit() {
     this.subjetForm = this.formBuilder.group({
