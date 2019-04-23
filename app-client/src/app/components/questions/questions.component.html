@@ -1,31 +1,47 @@
-<p>Subject:{{ (subjectName | async) }}  - Level:{{ (levelName | async) }} </p> <br>
+  
+<mat-card class="question" *ngIf="!showAnswer" >
+  <mat-card-header>
+     <mat-card-title>Subject:{{ (subjectName | async) }}  - Level:{{ (levelName | async) }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+     
+    <div appIsvisible [display]="false" > test dir </div>
+    <div >   
+        <div>
+            <mat-label> Q:{{qnumber}}  {{currentQuestion.question}} </mat-label>
+          </div>
+          <div>
+            Answers:
+            <ul >
+                <li *ngFor="let q of currentQuestion.choices ">
+                    <input type="radio" name="ans" (click)="setAnswer(q)" [checked]="answers[qnumber-1].answer == q"> {{q}}                 
+                </li> 
+                
+            </ul>
+          </div>
+    </div>
 
-<div *ngIf="!showAnswer">
-<div appIsvisible [display]="false" > test dir </div>
-<div >   
-    <div>
-        <mat-label> Q:{{qnumber}}  {{currentQuestion.question}} </mat-label>
-      </div>
-      <div>
-        Answers:
-        <ul >
-            <li *ngFor="let q of currentQuestion.choices ">
-                <input type="radio" name="ans" (click)="setAnswer(q)" [checked]="answers[qnumber-1].answer == q"> {{q}}                 
-            </li> 
-            
-        </ul>
-      </div>
-</div>
+  </mat-card-content>
+  <mat-card-actions>
+      <button mat-button  (click)="previousQuestions()" *ngIf="isPrev" >Prev</button>      
+      <button mat-button  (click)="nextQuestion()" *ngIf="isNext">Next</button>
+      <button mat-button  (click)="submitanswer()" *ngIf="!isNext"> submit</button> 
+  </mat-card-actions>
+</mat-card>
 
-<button type="button" (click)="previousQuestions()" *ngIf="isPrev" >Prev</button> 
-<span>     </span>
-<button type="button" (click)="nextQuestion()" *ngIf="isNext">Next</button>
-<button type="button" (click)="submitanswer()" *ngIf="!isNext"> submit</button> 
+<mat-card class="result" *ngIf="showAnswer" >
+    <mat-card-header>
+      <mat-card-title>Subject:{{ (subjectName | async) }}  - Level:{{ (levelName | async) }}</mat-card-title>
+      <mat-card-subtitle>Score</mat-card-subtitle>  
+    </mat-card-header>
+    <mat-card-content>      
+      <div >        
+        Correct: {{quizResult.correct}}<br>
+        Total: {{quizResult.total}}
+      </div>     
+    </mat-card-content>
+  </mat-card>
+  
 
-</div>
-  <div *ngIf="showAnswer">
-    Result:
-     <br>
-    Correct: {{quizResult.correct}}<br>
-    Total: {{quizResult.total}}
-  </div>
+
+

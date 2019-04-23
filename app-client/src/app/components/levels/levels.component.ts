@@ -8,6 +8,7 @@ import { SET_LEVEL_NAME } from '../../actions';
 @Component({
   selector: 'app-levels',
   templateUrl:'levels.component.html' ,
+  styleUrls:['levels.component.css']
   
 })
 export class LevelsComponent implements OnInit {

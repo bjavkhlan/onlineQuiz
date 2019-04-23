@@ -7,7 +7,8 @@ import { NgRedux, select } from '@angular-redux/store';
 
 @Component({
   selector: 'app-subjects',
-  templateUrl:'subjects.component.html'  
+  templateUrl:'subjects.component.html',
+  styleUrls: ['subjects.component.css'],
 })
 export class SubjectsComponent implements OnInit {
   @select() subjectName;

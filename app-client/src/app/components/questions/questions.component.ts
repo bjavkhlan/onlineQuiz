@@ -6,7 +6,8 @@ import { select } from '@angular-redux/store';
 
 @Component({
   selector: 'app-questions',
-  templateUrl:'questions.component.html'   
+  templateUrl:'questions.component.html',
+  styleUrls:['questions.component.css']
 })
 export class QuestionsComponent implements OnInit {
   @select() subjectName;
