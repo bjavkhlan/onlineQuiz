@@ -7,7 +7,7 @@
           <p>
             <mat-list>
                 <mat-list-item *ngFor="let subject of subjects">
-                <mat-icon mat-list-icon>folder</mat-icon> 
+                <mat-icon mat-list-icon>radio</mat-icon> 
                 <h4 mat-line><a (click)="setSubjectName(subject.subjectName)" [routerLink]="[subject._id]">{{subject.subjectName}}</a></h4>
                 <mat-divider></mat-divider>
                 </mat-list-item>

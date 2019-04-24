@@ -14,10 +14,11 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { tokenInterceptor } from './token.interceptor';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule,MatChipsModule } from '@angular/material';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { IAppState, rootReducer, INITIAL_STATE } from './store';
 import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatCardModule,
     NgReduxModule ,
-    FormsModule 
+    FormsModule ,
+    MatChipsModule
   ], 
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: tokenInterceptor, multi: true}],
   bootstrap: [AppComponent]

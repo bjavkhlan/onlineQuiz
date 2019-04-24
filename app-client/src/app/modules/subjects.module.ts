@@ -23,8 +23,7 @@ import {SubjectGuard} from '../guards/subject-guard';
       { path: '', component: SubjectsComponent },
       { path: ':subjectid', component: LevelsComponent,canActivate: [SubjectGuard] },
       { path: 'subject/notfound', component: SubjectNotFoundComp },
-      { path: ':subjectid/:levelid', component:QuestionsComponent  }
-      
+      { path: ':subjectid/:levelid', component:QuestionsComponent  }  
 
     ])
   ],

@@ -1,47 +1,46 @@
-  
-<mat-card class="question" *ngIf="!showAnswer" >
-  <mat-card-header>
-     <mat-card-title>Subject:{{ (subjectName | async) }}  - Level:{{ (levelName | async) }}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-     
-    <div appIsvisible [display]="false" > test dir </div>
-    <div >   
-        <div>
-            <mat-label> Q:{{qnumber}}  {{currentQuestion.question}} </mat-label>
-          </div>
-          <div>
-            Answers:
-            <ul >
-                <li *ngFor="let q of currentQuestion.choices ">
-                    <input type="radio" name="ans" (click)="setAnswer(q)" [checked]="answers[qnumber-1].answer == q"> {{q}}                 
-                </li> 
-                
-            </ul>
-          </div>
-    </div>
-
-  </mat-card-content>
-  <mat-card-actions>
-      <button mat-button  (click)="previousQuestions()" *ngIf="isPrev" >Prev</button>      
-      <button mat-button  (click)="nextQuestion()" *ngIf="isNext">Next</button>
-      <button mat-button  (click)="submitanswer()" *ngIf="!isNext"> submit</button> 
-  </mat-card-actions>
-</mat-card>
-
-<mat-card class="result" *ngIf="showAnswer" >
+<div class="questions">
+  <h3>Subject:{{ (subjectName | async) }}  - Level:{{ (levelName | async) }}</h3>
+  <mat-card class="question" *ngIf="!showAnswer" >
     <mat-card-header>
-      <mat-card-title>Subject:{{ (subjectName | async) }}  - Level:{{ (levelName | async) }}</mat-card-title>
-      <mat-card-subtitle>Score</mat-card-subtitle>  
+      <mat-card-title></mat-card-title>
     </mat-card-header>
-    <mat-card-content>      
-      <div >        
-        Correct: {{quizResult.correct}}<br>
-        Total: {{quizResult.total}}
-      </div>     
+    <mat-card-content>
+      
+      <div appIsvisible [display]="false" > test dir </div>
+      <div >   
+          <div>
+              <h4> Q:{{qnumber}}  {{currentQuestion.question}} </h4>
+            </div>
+            <div>
+              Answers:
+              <ul >
+                  <li *ngFor="let q of currentQuestion.choices ">
+                      <input type="radio" name="ans" (click)="setAnswer(q)" [checked]="answers[qnumber-1].answer == q"> {{q}}                 
+                  </li> 
+                  
+              </ul>
+            </div>
+      </div>
+
     </mat-card-content>
   </mat-card>
-  
+
+  <div class="actions" *ngIf="!showAnswer">
+      <button mat-button class="left mat-raised-button mat-primary" (click)="previousQuestions()" *ngIf="isPrev" >Prev</button>      
+      <button mat-button class="right left mat-raised-button mat-primary" (click)="nextQuestion()" *ngIf="isNext">Next</button>
+      <button mat-button class="right left mat-raised-button mat-accent" (click)="submitanswer()" *ngIf="!isNext">Submit</button> 
+  </div>
+  <mat-card class="result" *ngIf="showAnswer" >
+      <h3>Result: {{quizResult.correct / quizResult.total * 100}}  % </h3>
+      <mat-card-content> 
+          <mat-chip-list>
+              <mat-chip color="primary" selected>Correct: {{quizResult.correct}}</mat-chip>
+              <mat-chip color="warn" selected>Wrong: {{quizResult.total - quizResult.correct}}</mat-chip>
+              <mat-chip color="accent" selected>Total: {{quizResult.total}}</mat-chip>
+            </mat-chip-list>  
+      </mat-card-content>
+    </mat-card>
+</div>
 
 
 

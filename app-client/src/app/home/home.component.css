@@ -1,0 +1,9 @@
+.responsive {
+    background-image: url("/assets/img/bg-2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: calc(100vh - 275px);
+    min-height: 250px;
+    width:100%;
+}
