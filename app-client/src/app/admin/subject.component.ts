@@ -4,18 +4,8 @@ import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-subject',
-  template: `
-  <br>
-  <button mat-button (click)="displaySubjectForm()">Create a new subject</button>
-  <app-subject-form *ngIf="showSubjectForm" (subjectCreated)="getSubjects($event)"></app-subject-form>
-  <mat-list role="list">
-    <mat-list-item role="listitem" *ngFor="let subject of subjects">
-      <mat-icon>label</mat-icon>  
-      <span [routerLink]="subject._id"> {{subject.subjectName}} </span>
-    </mat-list-item>
-  </mat-list>
-  `,
-  styles: []
+  templateUrl: 'subject.component.html',
+  styleUrls: ['./admin.style.css']
 })
 export class SubjectComponent implements OnInit {
   public subjects:any = [];

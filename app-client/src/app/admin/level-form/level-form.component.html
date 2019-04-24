@@ -4,18 +4,21 @@
   </mat-form-field>
   <div formArrayName="questions">
     <h3>Questions</h3>
-    <mat-card *ngFor="let question of levelForm.get('questions').controls; let iq = index;">
-      <mat-card-title> Question {{iq+1}} </mat-card-title>
+    <mat-grid-list cols="2">
+    <mat-grid-tile *ngFor="let question of levelForm.get('questions').controls; let iq = index;">
+    <mat-card>
+      <mat-card-header> Question {{iq+1}} </mat-card-header>
       <div [formGroupName]="iq">
-        <mat-form-field>
-          <textarea matInput placeholder="Question" formControlName="question"></textarea>
+        <mat-form-field class="questionNameTA">
+          <textarea matInput placeholder="Question" formControlName="question" col="200"></textarea>
         </mat-form-field>
         <br>
         <div formArrayName="choices">
-          <div *ngFor="let choice of question.get('choices').controls; let ic = index;">
-            <input matInput placeholder="choice" [formControlName]="ic">
-          </div>
-          <button mat-button type="button" (click)="addChoice(question.get('choices'))">addChoice</button>
+          <mat-form-field class="choiceInput" *ngFor="let choice of question.get('choices').controls; let ic = index;">
+            <input matInput placeholder="choice {{ic+1}}" [formControlName]="ic">
+          </mat-form-field>
+          <br>
+          <button mat-raised-button type="button" (click)="addChoice(question.get('choices'))">add choice</button>
         </div>
 
         <br>
@@ -29,9 +32,11 @@
         </mat-form-field>
       </div>
     </mat-card>
-    <button mat-button type="button" (click)="addQuestion()">addQuestion</button>
+    </mat-grid-tile>
+    </mat-grid-list>
+    <button mat-stroked-button color="primary" type="button" (click)="addQuestion()">Add a question</button>
   </div>
-  <button mat-button type="submit" [disabled]="!levelForm.valid">Submit</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!levelForm.valid">Submit</button>
 </form>
 
 <!-- {{ levelForm.value | json }} -->

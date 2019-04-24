@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { LevelComponent } from './level.component';
 import { SubjectFormComponent } from './subject-form/subject-form.component';
 import { LevelFormComponent } from './level-form/level-form.component';
-import { MatCardModule, MatButtonModule, MatCheckboxModule, MatInputModule, MatFormFieldModule, MatDividerModule, MatListModule, MatIconModule, MatSelectModule } from '@angular/material';
+import { MatCardModule, MatButtonModule, MatCheckboxModule, MatInputModule, MatFormFieldModule, MatDividerModule, MatListModule, MatIconModule, MatSelectModule, MatGridListModule } from '@angular/material';
 import { tokenInterceptor } from '../token.interceptor';
 
 @NgModule({
@@ -23,6 +23,7 @@ import { tokenInterceptor } from '../token.interceptor';
     MatListModule,
     MatIconModule,
     MatSelectModule,
+    MatGridListModule,
 
     CommonModule,
     HttpClientModule,

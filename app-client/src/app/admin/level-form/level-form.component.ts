@@ -5,7 +5,7 @@ import { AdminService } from '../admin.service';
 @Component({
   selector: 'app-level-form',
   templateUrl: './level-form.component.html',
-  styles: []
+  styleUrls: ['../admin.style.css']
 })
 export class LevelFormComponent {
   @Input() subjectId:String;
@@ -41,6 +41,7 @@ export class LevelFormComponent {
   onSubmit() {
     this.adminService.addLevel(this.subjectId, this.levelForm.value)
     .subscribe(data => { console.log(data); this.levelAdded.emit() });
+    this.levelForm.reset();
   }
 
 }

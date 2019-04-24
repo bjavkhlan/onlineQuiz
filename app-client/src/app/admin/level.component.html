@@ -1,0 +1,7 @@
+<!-- <ul>
+    <li *ngFor="let level of levels">
+      {{level | json}}
+    </li>
+  </ul> -->
+
+  <app-level-form [subjectId]="subjectId" (levelAdded)="getLevels(subjectId)"><app-level-form>

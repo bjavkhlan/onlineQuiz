@@ -1,0 +1,8 @@
+<mat-list role="list">
+<mat-list-item role="listitem" *ngFor="let subject of subjects">
+    <mat-icon>chevron_right</mat-icon>  
+      <a [routerLink]="subject._id"> {{subject.subjectName}} </a>
+    </mat-list-item>
+</mat-list>
+<button mat-stroked-button color="primary" (click)="displaySubjectForm()">Create a new subject</button>
+<app-subject-form *ngIf="showSubjectForm" (subjectCreated)="getSubjects($event)"></app-subject-form>

@@ -4,17 +4,8 @@ import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-level',
-  template: `
-    <ul>
-      <li *ngFor="let level of levels">
-        {{level | json}}
-      </li>
-    </ul>
-
-
-    <app-level-form [subjectId]="subjectId" (levelAdded)="getLevels(subjectId)"><app-level-form>
-  `,
-  styles: []
+  templateUrl: 'level.component.html',
+  styleUrls: ['./admin.style.css']
 })
 export class LevelComponent implements OnInit {
   public levels:any = [];
