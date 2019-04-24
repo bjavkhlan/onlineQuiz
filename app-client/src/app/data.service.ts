@@ -59,4 +59,10 @@ export class DataService {
   submit_answers(levelid,answers):any{     
     return this.http.post(this.baseUrl + '/submission/'+levelid,answers )  
    }
+
+   get_userquizes(){
+    const decodedtoken = this.jwtHelper.decodeToken(localStorage.getItem('token'));
+    const email=decodedtoken.username;
+    return this.http.get(this.baseUrl + '/userquizes/'+email);
+  }
 }

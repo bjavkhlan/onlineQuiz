@@ -2,6 +2,8 @@
   <mat-toolbar-row>
     <button mat-button routerLink= '/home'>Online Quize</button>
     <button *ngIf="loggedIn==true" mat-button routerLink= '/subjects'>Subjects</button>
+    <button *ngIf="loggedIn==true" mat-button routerLink= '/userquizes'>My Quizes</button>
+
     <button *ngIf="admin==true" mat-button routerLink= '/admin'>admin</button>
     <span class='spacer'></span>
     <span *ngIf="loggedIn==false">

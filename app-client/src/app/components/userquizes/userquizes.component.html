@@ -1,0 +1,26 @@
+<h3> levels scores </h3>
+
+<div>
+
+  <ul >
+      <li *ngFor="let level of userQiusez ">
+        <mat-card class="result">
+        <h3>{{level.subjectName}}     {{level.levelName}} </h3>
+          <mat-card-content> 
+              <mat-chip-list>
+                  <mat-chip color="primary" selected>Correct: {{level.gradeForLevel.correct}}</mat-chip>
+                  <mat-chip color="warn" selected>Wrong: {{level.gradeForLevel.total - level.gradeForLevel.correct}}</mat-chip>
+                  <mat-chip color="accent" selected>Total: {{level.gradeForLevel.total}}</mat-chip>
+                  </mat-chip-list>  
+             
+               </mat-card-content>
+        </mat-card>
+
+
+
+        
+      </li> 
+      
+  </ul>
+</div>
+

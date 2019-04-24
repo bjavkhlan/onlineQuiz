@@ -15,6 +15,7 @@ const adminRouter = require('./routes/admin');
 const submissionRouter = require('./routes/submission');
 
 const bearerMiddleware = require('./middlewares/bearer');
+const userquizesRouter = require('./routes/userquizes');
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/levels', levelsRouter);
 app.use('/api/submission/', submissionRouter);
 app.use('/api/admin/', adminRouter);
+app.use('/api/userquizes/', userquizesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

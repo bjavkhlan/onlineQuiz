@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { AdminGuard } from './guards/admin.guard';
 import { SubjectGuard } from './guards/subject.guard';
+import {UserQuizesComponent} from './components/userquizes/userquizes.component';
 
 const routes: Routes = [{
   path:'' ,component: HomeComponent
@@ -20,6 +21,8 @@ const routes: Routes = [{
 }, {
   path: 'admin', loadChildren: './admin/admin.module#AdminModule',
   canActivate:[AdminGuard]
+}, {
+  path: 'userquizes', component: UserQuizesComponent
 }
 ];
 

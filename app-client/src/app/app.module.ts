@@ -18,7 +18,7 @@ import { MatCardModule,MatChipsModule } from '@angular/material';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { IAppState, rootReducer, INITIAL_STATE } from './store';
 import { FormsModule } from '@angular/forms';
-
+import { UserQuizesComponent } from './components/userquizes/userquizes.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    NavBarComponent
+    NavBarComponent,
+    UserQuizesComponent
   ],
   imports: [
     BrowserModule,
